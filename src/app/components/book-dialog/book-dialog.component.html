@@ -1,0 +1,74 @@
+@if (isOpen) {
+  <div class="overlay" (click)="onOverlayClick($event)">
+    <div class="dialog">
+      <header class="dialog-header">
+        <h2>{{ mode === 'create' ? 'Add book' : 'Book details and edit' }}</h2>
+        <button type="button" class="close-btn" (click)="close.emit()">✕</button>
+      </header>
+
+      <form #bookForm="ngForm" (ngSubmit)="submit()">
+        <label>
+          Title
+          <input
+            type="text"
+            name="title"
+            [(ngModel)]="formValue.title"
+            required
+            placeholder="Book title"
+          />
+        </label>
+
+        <label>
+          Author
+          <input
+            type="text"
+            name="author"
+            [(ngModel)]="formValue.author"
+            required
+            placeholder="Author name"
+          />
+        </label>
+
+        <label>
+          Category
+          <input
+            type="text"
+            name="category"
+            [(ngModel)]="formValue.category"
+            required
+            placeholder="Category"
+            list="categories-list"
+          />
+        </label>
+
+        <datalist id="categories-list">
+          @for (category of categories; track category) {
+            <option [value]="category"></option>
+          }
+        </datalist>
+
+        <label>
+          Description
+          <textarea
+            name="description"
+            [(ngModel)]="formValue.description"
+            rows="4"
+            required
+            placeholder="Brief description"
+          ></textarea>
+        </label>
+
+        @if (errorMessage) {
+          <p class="error">{{ errorMessage }}</p>
+        }
+
+        <div class="dialog-actions">
+          <button type="button" class="secondary" (click)="close.emit()">Cancel</button>
+          <button type="submit" [disabled]="isSaving || !bookForm.valid">
+            {{ isSaving ? 'Saving...' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+}

@@ -1,0 +1,97 @@
+.book-card {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid #e5eaf4;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.cover {
+  border-radius: 10px;
+  min-height: 120px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 8px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.04rem;
+  color: #0f172a;
+}
+
+.heart-btn {
+  border: 0;
+  background: #eef2ff;
+  color: #64748b;
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.heart-btn.active {
+  background: #ffe4e6;
+  color: #e11d48;
+}
+
+.author {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.description {
+  margin: 0;
+  color: #475569;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.category {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.actions button {
+  border: 0;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.actions .danger {
+  background: #dc2626;
+}

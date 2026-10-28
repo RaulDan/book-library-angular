@@ -1,0 +1,30 @@
+<article class="book-card">
+  <div class="cover" [style.background]="coverBackground">
+    <span>{{ initials }}</span>
+  </div>
+
+  <div class="card-content">
+    <div class="card-top">
+      <h3>{{ book.title }}</h3>
+      <button
+        class="heart-btn"
+        type="button"
+        [class.active]="book.isFavorite"
+        (click)="toggleFavorite.emit(book.id)"
+      >
+        ♥
+      </button>
+    </div>
+
+    <p class="author">{{ book.author }}</p>
+    <p class="description">{{ book.description }}</p>
+    @if (showCategory) {
+      <p class="category">{{ book.category }}</p>
+    }
+
+    <div class="actions">
+      <button type="button" (click)="edit.emit(book)">Details / Edit</button>
+      <button type="button" class="danger" (click)="remove.emit(book.id)">Delete</button>
+    </div>
+  </div>
+</article>

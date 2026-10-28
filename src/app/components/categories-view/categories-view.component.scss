@@ -1,0 +1,63 @@
+.view-head {
+  margin-bottom: 12px;
+}
+
+h1,
+h2 {
+  margin: 0;
+  color: #0f172a;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+p {
+  margin: 6px 0 0;
+  color: #64748b;
+}
+
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.category-list button {
+  border: 0;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  background: #eff6ff;
+  color: #1e3a8a;
+}
+
+.category-list button.active {
+  background: #1d4ed8;
+  color: #ffffff;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 12px;
+}
+
+.empty {
+  margin: 10px 0;
+  color: #64748b;
+}
+
+.error {
+  color: #dc2626;
+  font-weight: 600;
+  margin: 8px 0 12px;
+}

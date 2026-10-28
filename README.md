@@ -12,6 +12,36 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
+## Mock backend
+
+Run the Node.js mock backend for books:
+
+```bash
+npm run start:mock-server
+```
+
+The backend runs on `http://localhost:7002` and loads default data from
+`angular-static-mock-server/mock-data/books.json` at startup.
+
+Available endpoints:
+
+- `GET /books`
+- `GET /books/:id`
+- `POST /books`
+- `PUT /books/:id`
+- `PATCH /books/:id`
+- `DELETE /books/:id`
+- `POST /books/:id/favorite`
+- `GET /favorites`
+- `GET /categories`
+- `GET /categories/:name/books`
+
+Run frontend + backend together:
+
+```bash
+npm run start-all
+```
+
 ## Code scaffolding
 
 Angular CLI includes powerful code scaffolding tools. To generate a new component, run:

@@ -15,10 +15,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', async () => {
+  it('should render brand title', async () => {
     const fixture = TestBed.createComponent(App);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, book-library-angular');
+    expect(compiled.querySelector('.brand strong')?.textContent).toContain('BookBase');
   });
 });

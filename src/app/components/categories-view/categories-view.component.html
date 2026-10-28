@@ -1,0 +1,56 @@
+<section class="view-head">
+  <div>
+    <h1>Categories</h1>
+    <p>Pick a category to see all related books.</p>
+  </div>
+</section>
+
+@if (booksApi.error()) {
+  <p class="error">{{ booksApi.error() }}</p>
+}
+
+@if (booksApi.loading()) {
+  <p class="empty">Loading categories...</p>
+} @else if (categories.length === 0) {
+  <p class="empty">No categories available.</p>
+} @else {
+  <div class="category-list">
+    @for (category of categories; track category) {
+      <button
+        type="button"
+        [class.active]="selectedCategory === category"
+        (click)="selectCategory(category)"
+      >
+        {{ category }}
+      </button>
+    }
+  </div>
+
+  <h2>{{ selectedCategory }}</h2>
+  @if (categoryBooks.length === 0) {
+    <p class="empty">No books in this category.</p>
+  } @else {
+    <section class="book-grid">
+      @for (book of categoryBooks; track book.id) {
+        <app-book-card
+          [book]="book"
+          [showCategory]="false"
+          (edit)="openEditDialog($event)"
+          (toggleFavorite)="toggleFavorite($event)"
+          (remove)="deleteBook($event)"
+        />
+      }
+    </section>
+  }
+}
+
+<app-book-dialog
+  [isOpen]="isDialogOpen"
+  mode="edit"
+  [book]="selectedBook"
+  [categories]="categories"
+  [errorMessage]="dialogError"
+  [isSaving]="isSaving"
+  (close)="closeDialog()"
+  (save)="saveBook($event)"
+/>

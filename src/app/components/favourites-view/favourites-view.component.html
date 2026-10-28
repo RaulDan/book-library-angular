@@ -1,0 +1,39 @@
+<section class="view-head">
+  <div>
+    <h1>Favourite Books</h1>
+    <p>All books you marked with the heart icon.</p>
+  </div>
+</section>
+
+@if (booksApi.error()) {
+  <p class="error">{{ booksApi.error() }}</p>
+}
+
+@if (booksApi.loading()) {
+  <p class="empty">Loading favourites...</p>
+} @else if (favouriteBooks.length === 0) {
+  <p class="empty">No favourite books yet.</p>
+} @else {
+  <section class="book-grid">
+    @for (book of favouriteBooks; track book.id) {
+      <app-book-card
+        [book]="book"
+        [showCategory]="true"
+        (edit)="openEditDialog($event)"
+        (toggleFavorite)="toggleFavorite($event)"
+        (remove)="deleteBook($event)"
+      />
+    }
+  </section>
+}
+
+<app-book-dialog
+  [isOpen]="isDialogOpen"
+  mode="edit"
+  [book]="selectedBook"
+  [categories]="categories"
+  [errorMessage]="dialogError"
+  [isSaving]="isSaving"
+  (close)="closeDialog()"
+  (save)="saveBook($event)"
+/>

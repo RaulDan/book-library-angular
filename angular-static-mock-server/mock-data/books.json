@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "title": "The Psychology of Money",
+    "author": "Morgan Housel",
+    "description": "A practical guide on behavior, money habits and long-term wealth.",
+    "category": "Finance",
+    "isFavorite": false
+  },
+  {
+    "id": 2,
+    "title": "Atomic Habits",
+    "author": "James Clear",
+    "description": "Small changes, remarkable results for personal and professional growth.",
+    "category": "Self Development",
+    "isFavorite": true
+  },
+  {
+    "id": 3,
+    "title": "Real Help",
+    "author": "Ayodeji Awosika",
+    "description": "A direct look at doing meaningful work and building a better life.",
+    "category": "Business",
+    "isFavorite": false
+  },
+  {
+    "id": 4,
+    "title": "The Room",
+    "author": "Jonas Karlsson",
+    "description": "A sharp and unusual story about ambition, obsession and reality.",
+    "category": "Fiction",
+    "isFavorite": true
+  },
+  {
+    "id": 5,
+    "title": "Through the Eyes",
+    "author": "Cathy Harmon",
+    "description": "A character-driven narrative about perspective and emotional resilience.",
+    "category": "Fiction",
+    "isFavorite": false
+  }
+]
