@@ -7,10 +7,26 @@ This project was generated using [Angular CLI](https://github.com/angular/angula
 To start a local development server, run:
 
 ```bash
-ng serve
+npm start
 ```
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+
+## Iframe host
+
+This application is embedded by the root-level [iframe host](../index.html) and
+[alternate host](../index-webEl.html) at
+`http://localhost:4200/`. Start its frontend and mock backend together before
+opening the host:
+
+```bash
+npm run start-all-angular
+```
+
+The host also requires the React app on port 3000 and the Svelte app on port
+5000. For a production deployment, configure the web server serving this app
+to allow the host origin to frame it; do not send `X-Frame-Options: DENY` or a
+`Content-Security-Policy` `frame-ancestors` directive that excludes the host.
 
 ## Mock backend
 
@@ -39,7 +55,7 @@ Available endpoints:
 Run frontend + backend together:
 
 ```bash
-npm run start-all
+npm run start-all-angular
 ```
 
 ## Code scaffolding
