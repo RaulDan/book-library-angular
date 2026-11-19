@@ -7,6 +7,7 @@
     "start:mock-server": "node angular-static-mock-server/server.js",
     "start-all-angular": "concurrently \"npm run start\" \"npm run start:mock-server\"",
     "build": "ng build",
+    "build-web-elem-angular": "npm exec ng -- build --browser=src/main.element.ts --output-path=dist/webComponent-book-library-angular --output-hashing=none",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -16,6 +17,7 @@
     "@angular/common": "^22.2.0",
     "@angular/compiler": "^22.2.0",
     "@angular/core": "^22.2.0",
+    "@angular/elements": "22.2.3",
     "@angular/forms": "^22.2.0",
     "@angular/platform-browser": "^22.2.0",
     "@angular/router": "^22.2.0",
@@ -26,8 +28,8 @@
     "@angular/build": "^22.2.4",
     "@angular/cli": "^22.2.4",
     "@angular/compiler-cli": "^22.2.0",
-    "jsdom": "^30.0.0",
     "concurrently": "^9.2.1",
+    "jsdom": "^30.0.0",
     "prettier": "^3.8.1",
     "typescript": "~6.0.2",
     "vitest": "^5.0.0"
