@@ -69,6 +69,41 @@
           },
           "defaultConfiguration": "development"
         },
+        "build-federation": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "customWebpackConfig": {
+              "path": "webpack.federation.config.cjs"
+            },
+            "outputPath": "dist/federation",
+            "index": "src/federation/index.html",
+            "main": "src/federation/standalone.ts",
+            "tsConfig": "tsconfig.federation.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [],
+            "styles": []
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-federation": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "buildTarget": "book-library-angular:build-federation:development",
+            "port": 4200,
+            "liveReload": false,
+            "hmr": false
+          }
+        },
         "test": {
           "builder": "@angular/build:unit-test"
         }

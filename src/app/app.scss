@@ -72,3 +72,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+@container (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": { "types": [] },
+  "files": ["src/federation/standalone.ts", "src/federation/mount.ts"],
+  "include": []
+}
