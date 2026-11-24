@@ -8,7 +8,9 @@
     "start-all-angular": "concurrently \"npm run start\" \"npm run start:mock-server\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:single-spa": "ng build --configuration single-spa",
+    "watch:single-spa": "ng build --configuration single-spa --watch"
   },
   "private": true,
   "packageManager": "npm@11.19.1",

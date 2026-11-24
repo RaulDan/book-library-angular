@@ -49,6 +49,14 @@
               ],
               "outputHashing": "all"
             },
+            "single-spa": {
+              "browser": "src/main.single-spa.ts",
+              "outputPath": "dist/single-spa",
+              "styles": [],
+              "optimization": false,
+              "extractLicenses": false,
+              "outputHashing": "none"
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
