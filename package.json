@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve --port 4200",
     "start:mock-server": "node angular-static-mock-server/server.js",
-    "start-all-angular": "concurrently \"npm run start\" \"npm run start:mock-server\"",
+    "start-all-angular": "concurrently \"npm run start:federation\" \"npm run start:mock-server\"",
     "build": "ng build",
     "build:federation": "ng run book-library-angular:build-federation:production",
     "start:federation": "ng run book-library-angular:serve-federation",
