@@ -12,22 +12,29 @@ const lifecycles = {
     const root = document.createElement('book-library-root');
     root.style.fontFamily = 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
     domElement.replaceChildren(root);
-    const instance = await createApplication({
-      providers: [...(appConfig.providers ?? []), { provide: APP_ID, useValue: 'book-library' }],
-    });
+    let instance: ApplicationRef | undefined;
     try {
+      instance = await createApplication({
+        providers: [...(appConfig.providers ?? []), { provide: APP_ID, useValue: 'book-library' }],
+      });
       instance.bootstrap(App, root);
       application = instance;
     } catch (error) {
-      instance.destroy();
-      root.remove();
+      try {
+        instance?.destroy();
+      } finally {
+        root.remove();
+      }
       throw error;
     }
   },
   async unmount({ domElement }: Props): Promise<void> {
-    application?.destroy();
-    application = undefined;
-    domElement.replaceChildren();
+    try {
+      application?.destroy();
+    } finally {
+      application = undefined;
+      domElement.replaceChildren();
+    }
   },
 };
 
