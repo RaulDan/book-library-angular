@@ -2,7 +2,11 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "completion": {
+      "prompted": true
+    },
+    "analytics": false
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -60,13 +64,29 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "assets": [
+                {
+                  "glob": "**/*",
+                  "input": "public"
+                },
+                {
+                  "glob": "**/*",
+                  "input": "dist/single-spa/browser",
+                  "output": "single-spa"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular/build:dev-server",
+          "options": {
+            "headers": {
+              "Access-Control-Allow-Origin": "*"
+            }
+          },
           "configurations": {
             "production": {
               "buildTarget": "book-library-angular:build:production"

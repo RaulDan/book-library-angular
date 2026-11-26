@@ -1,41 +1,46 @@
 import { APP_ID, ApplicationRef } from '@angular/core';
 import { createApplication } from '@angular/platform-browser';
+import type { AppProps, LifeCycles } from 'single-spa';
+import { singleSpaAngular } from 'single-spa-angular';
 import { appConfig } from './app/app.config';
 import { App } from './app/app';
 
 type Props = { domElement: HTMLElement };
-let application: ApplicationRef | undefined;
 
-const lifecycles = {
-  async bootstrap(): Promise<void> {},
-  async mount({ domElement }: Props): Promise<void> {
-    const root = document.createElement('book-library-root');
-    root.style.fontFamily = 'Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
-    domElement.replaceChildren(root);
+const lifecycles = singleSpaAngular<Props>({
+  NgZone: 'noop',
+  template: '<book-library-root style="font-family: Inter, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"></book-library-root>',
+  async bootstrapFunction({ domElement }): Promise<ApplicationRef> {
+    const root = domElement.querySelector('book-library-root');
+    if (!root) throw new Error('Missing book library root element');
     let instance: ApplicationRef | undefined;
     try {
       instance = await createApplication({
         providers: [...(appConfig.providers ?? []), { provide: APP_ID, useValue: 'book-library' }],
       });
       instance.bootstrap(App, root);
-      application = instance;
+      return instance;
     } catch (error) {
       try {
         instance?.destroy();
       } finally {
-        root.remove();
+        domElement.replaceChildren();
       }
       throw error;
     }
   },
-  async unmount({ domElement }: Props): Promise<void> {
-    try {
-      application?.destroy();
-    } finally {
-      application = undefined;
-      domElement.replaceChildren();
-    }
-  },
-};
+});
 
-Object.assign(window, { bookLibrarySingleSpa: lifecycles });
+export const bootstrap = lifecycles.bootstrap;
+export const mount = lifecycles.mount;
+
+export async function unmount(props: AppProps & Props): Promise<void> {
+  try {
+    const unmountLifecycles: LifeCycles<Props>['unmount'] = lifecycles.unmount;
+    for (const lifecycle of Array.isArray(unmountLifecycles) ? unmountLifecycles : [unmountLifecycles]) {
+      await lifecycle(props);
+    }
+  } finally {
+    props.domElement.replaceChildren();
+  }
+}

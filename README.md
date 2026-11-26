@@ -36,10 +36,10 @@ Available endpoints:
 - `GET /categories`
 - `GET /categories/:name/books`
 
-Run frontend + backend together:
+Run the standalone frontend, backend, and watched single-spa bundle together:
 
 ```bash
-npm run start-all
+npm run start-all-angular
 ```
 
 ## Code scaffolding
@@ -65,6 +65,16 @@ ng build
 ```
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+For single-spa, run `npm run build:single-spa`. The ES module in
+`dist/single-spa/browser/main.js` exports `bootstrap`, `mount`, and `unmount`;
+the host must pass a `domElement` custom prop. The entry uses
+`single-spa-angular` to manage the Angular application lifecycle.
+`npm run start-all-angular` builds and watches this bundle, starts the book API,
+and serves both the standalone app and the bundle on port 4200 with CORS
+enabled. Hosts load `http://localhost:4200/single-spa/main.js`. The regular
+`npm start` starts only the development server; build the single-spa bundle
+first if you also want to load it from a host.
 
 ## Running unit tests
 
