@@ -2,7 +2,12 @@
   <aside class="sidebar">
     <div class="brand">
       <span class="brand-dot"></span>
-      <strong>BookBase</strong>
+      <strong>BookBase 2</strong>
+      @if (sharedPath !== undefined) {
+        <button type="button" (click)="openSharedHome()">Home</button>
+      } @else {
+        <a [routerLink]="homeLink">Home</a>
+      }
     </div>
 
     <nav class="menu">
@@ -28,3 +33,4 @@
     }
   </main>
 </div>
+<router-outlet/>

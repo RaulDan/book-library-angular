@@ -76,6 +76,7 @@ h3 {
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-top: auto;
 }
@@ -95,3 +96,17 @@ h3 {
 .actions .danger {
   background: #dc2626;
 }
+
+.actions button:disabled {
+  cursor: wait;
+  opacity: 0.6;
+}
+
+.read-message,
+.read-error {
+  margin: 0;
+  font-size: 0.85rem;
+}
+
+.read-message { color: #15803d; }
+.read-error { color: #dc2626; }

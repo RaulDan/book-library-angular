@@ -24,7 +24,16 @@
 
     <div class="actions">
       <button type="button" (click)="edit.emit(book)">Details / Edit</button>
+      <button type="button" (click)="markRead()" [disabled]="creatingReadGoal()">
+        {{ creatingReadGoal() ? 'Saving...' : 'Read' }}
+      </button>
       <button type="button" class="danger" (click)="remove.emit(book.id)">Delete</button>
     </div>
+    @if (readMessage()) {
+      <p class="read-message" role="status">{{ readMessage() }}</p>
+    }
+    @if (readError()) {
+      <p class="read-error" role="alert">{{ readError() }}</p>
+    }
   </div>
 </article>
