@@ -2,6 +2,30 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.4.
 
+## Module Federation mode
+
+```sh
+npm ci
+npm run serve:federation
+```
+
+Run `npm run start:mock-server` in a separate terminal. Stop standalone `ng serve`
+first: both modes use port 4200. The entry is
+`http://localhost:4200/remoteEntry.js`, container `book_library`, exposing
+`./mount`. Angular and React hosts run on 4201 and 3001.
+
+`npm run build:federation` emits `dist/federation`. Deploy this directory and all
+its chunks together; the public path resolves relative to the remote entry.
+Production servers must allow both host origins through CORS. The dedicated
+build uses Angular 22 AOT, the Babel 8 linker, and Webpack; the existing standalone
+Angular application builder remains unchanged. Angular Webpack support is
+deprecated upstream, so keep dedicated tooling compatible with Angular 22.
+
+The mount API creates an independent Angular application with Shadow DOM styles
+and returns an idempotent disposer. Do not share Angular 22 with the Angular 20
+host. Federation builds reuse the existing application, template, and styles;
+they do not bootstrap `src/main.ts`.
+
 ## Development server
 
 To start a local development server, run:
@@ -39,7 +63,7 @@ Available endpoints:
 Run frontend + backend together:
 
 ```bash
-npm run start-all
+npm run start-all-angular
 ```
 
 ## Code scaffolding

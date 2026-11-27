@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ES2022",
+    "moduleResolution": "bundler",
+    "types": [],
+    "outDir": "./dist/federation-ts"
+  },
+  "files": ["src/federation/mount.ts"],
+  "include": [],
+  "references": []
+}
